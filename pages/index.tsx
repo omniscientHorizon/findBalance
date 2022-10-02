@@ -44,7 +44,7 @@ const Home: NextPage = () => {
       <header className={styles.AppHeader}>
         <h1 > <em>Hola</em>👋</h1>
         <p>
-          Let's find out who has how much $SOL 🤑
+          Let&aposs find out who has how much $SOL 🤑
         </p>
         <AddressForm handler={addressSubmittedHandler} />
         <p>{`Address: ${address}`}</p>
