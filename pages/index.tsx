@@ -5,19 +5,38 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import AddressForm from '../components/AddressForm'
 import * as Web3 from '@solana/web3.js'
+import { checkIsManualRevalidate } from 'next/dist/server/api-utils'
+import { get } from 'https'
+
 
 
 const Home: NextPage = () => {
   const [balance, setBalance] = useState(0)
   const [address, setAddress] = useState('')
+  const [chainName, setchainName] = useState('mainnet-beta')
   const [isExecutable, setExecutable] = useState(false)
+
+  const makeItMainnet = () =>{
+    console.log('mainnet karne ka hai')
+    setchainName('mainnet-beta')
+  }
+  
+  const makeItDevnet = () =>{
+    console.log('devnet karne ka hai')
+    setchainName('devnet')
+  }
+
+  const makeItTestnet = () =>{
+    console.log('testnet karne ka hai')
+    setchainName('testnet')
+  }
 
   const addressSubmittedHandler = (address: string) => {
 
     try {
     const key = new Web3.PublicKey(address)
     setAddress(key.toBase58())
-    const connection = new Web3.Connection(Web3.clusterApiUrl('mainnet-beta'))
+    const connection = new Web3.Connection(Web3.clusterApiUrl(chainName))
 
     
     connection.getBalance(key).then (balance => {
@@ -42,13 +61,26 @@ const Home: NextPage = () => {
   return (
     <div className={styles.App}>
       <header className={styles.AppHeader}>
-        <h1 > <em>Hola</em>👋</h1>
-        <p>
+        <h1 > <em>Hola</em>👋</h1>  
+        <div className={styles.Rules}>
+        <p className={styles.opacityIncrease}>
           Let's find out who has how much $SOL 🤑
         </p>
+        <ol className={styles.opacityIncrease}>
+          <li>Enter a public key</li>
+          <li>Select the chain</li>
+          <li>Check balance</li>
+        </ol>
+
+        </div>
         <AddressForm handler={addressSubmittedHandler} />
-        <p>{`Address: ${address}`}</p>
-        <p>{`Balance: ${balance} SOL`}</p>
+        <div className={styles.buttonHolder}>
+        <button className={styles.mainnetButton} onClick={makeItMainnet}>mainnet</button>
+        <button className={styles.devnetButton} onClick={makeItDevnet}>devnet</button>
+        <button className={styles.testnetButton} onClick={makeItTestnet}>testnet</button>
+        </div>
+        <p>{`Address: ${address}`} <br/>
+        {`Balance: ${balance} SOL on ${chainName}`}</p>
         {/* <p>{`Is it executable: ${isExecutable? 'Yupp':'Nuh-uh'}`}</p> */}
       </header>
     </div>
