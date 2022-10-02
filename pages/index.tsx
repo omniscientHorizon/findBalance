@@ -64,7 +64,7 @@ const Home: NextPage = () => {
         <h1 > <em>Hola</em>👋</h1>  
         <div className={styles.Rules}>
         <p className={styles.opacityIncrease}>
-          Let's find out who has how much $SOL 🤑
+          Let&aposs find out who has how much $SOL 🤑
         </p>
         <ol className={styles.opacityIncrease}>
           <li>Enter a public key</li>
