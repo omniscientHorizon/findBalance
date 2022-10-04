@@ -31,12 +31,14 @@ const Home: NextPage = () => {
     setchainName('testnet')
   }
 
+  const chainname: Web3.Cluster = chainName
+
   const addressSubmittedHandler = (address: string) => {
 
     try {
     const key = new Web3.PublicKey(address)
     setAddress(key.toBase58())
-    const connection = new Web3.Connection(Web3.clusterApiUrl(chainName))
+    const connection = new Web3.Connection(Web3.clusterApiUrl(chainname))
 
     
     connection.getBalance(key).then (balance => {
