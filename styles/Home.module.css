@@ -41,7 +41,7 @@
 .mainnetButton:hover{
   color: black;
   background-color:#f2f2f2;
-  cursor:pointer;
+  cursor:context-menu;
 }
 
 .devnetButton {
@@ -58,7 +58,7 @@
 .devnetButton:hover{
   color: black;
   background-color:#f2f2f2;
-  cursor:pointer;
+  cursor:context-menu;
 }
 
 .testnetButton {
@@ -75,7 +75,7 @@
 .testnetButton:hover{
   color: black;
   background-color:#f2f2f2;
-  cursor:pointer;
+  cursor:context-menu;
 }
 
 .buttonHolder{
